@@ -1,0 +1,23 @@
+.login-form {
+  display: flex;
+  border: solid black;
+  border-radius: 1rem;
+  flex-direction: column;
+  text-align: center;
+  margin: 2rem;
+  padding: 2rem;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+label {
+  padding: 1rem;
+}
+
+button {
+  align-self: center;
+  margin: 1rem;
+}

@@ -1,0 +1,39 @@
+:host {
+  z-index: 9999;
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+}
+
+.toast {
+  position: relative;
+  background: #333;
+  color: white;
+  padding: 1.5rem;
+  margin: 1rem;
+  border-radius: 1rem;
+  min-width: 5rem;
+}
+
+.toast > button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.toast.error {
+  background-color: #f44336;
+}
+
+.toast.warning {
+  background-color: #ff9800;
+}
+
+.toast.info {
+  background-color: #2196f3;
+}

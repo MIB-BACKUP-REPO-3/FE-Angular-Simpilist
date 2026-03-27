@@ -1,0 +1,60 @@
+<form [formGroup]="form" (ngSubmit)="register()">
+  <div class="register-form">
+    <h1>Register</h1>
+
+    <div class="field">
+      <label>First Name</label>
+      <input type="text" formControlName="firstName" placeholder="First Name" />
+      @if (firstName?.invalid && firstName?.touched) {
+      <div>First name is required</div>
+      }
+    </div>
+
+    <div class="field">
+      <label>Last Name</label>
+      <input type="text" formControlName="lastName" placeholder="Last Name" />
+      @if (lastName?.invalid && lastName?.touched) {
+      <div>Last name is required</div>
+      }
+    </div>
+
+    <div class="field">
+      <label>Phone Number</label>
+        <input class="phone-code" type="text" formControlName="phoneCode" placeholder="+1" />
+        @if (phoneCode?.invalid && phoneCode?.touched) {
+        <div>Phone code is required</div>
+        }
+        <input type="text" formControlName="phoneNumber" placeholder="1234567890" />
+        @if (phoneNumber?.invalid && phoneNumber?.touched) {
+        <div>Phone number is required</div>
+        }
+    </div>
+
+    <div class="field">
+      <label>Email</label>
+      <input type="email" formControlName="email" placeholder="Email" />
+      @if (email?.invalid && email?.touched) {
+      <div>Valid email is required</div>
+      }
+    </div>
+
+    <div class="field">
+      <label>Password</label>
+      <input type="password" formControlName="password" placeholder="Password" />
+      @if (password?.invalid && password?.touched) {
+      <div>Password is required</div>
+      }
+    </div>
+
+    <div class="field">
+      <button type="submit">Register</button>
+
+    </div>
+    <div class="field">
+      <p>
+        Already have an account?
+      </p>
+      <button type="button" (click)="redirectLogin()">Login</button>
+    </div>
+  </div>
+</form>

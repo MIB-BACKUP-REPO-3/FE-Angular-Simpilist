@@ -1,0 +1,50 @@
+.register-form {
+  display: flex;
+  border: solid black;
+  border-radius: 1rem;
+  flex-direction: column;
+  text-align: center;
+  margin: 2rem;
+  padding: 2rem;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem; /* adds spacing between fields */
+}
+
+label {
+  padding: 1rem;
+}
+
+input {
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ccc;
+}
+
+button {
+  align-self: center;
+  margin: 1rem;
+}
+
+button:hover {
+  background-color: #1565c0;
+}
+
+h1 {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.phone-code{
+  width: 2rem;
+}
+
+.phone-code::after {
+  content: "-";
+}
+

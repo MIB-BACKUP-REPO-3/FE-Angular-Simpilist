@@ -1,0 +1,6 @@
+@for (notification of notifications; track notification.id) {
+  <div class="toast" [class]="notification.type">
+    <span>{{ notification.message }}</span>
+    <button (click)="removeMessage(notification.id)">x</button>
+  </div>
+}

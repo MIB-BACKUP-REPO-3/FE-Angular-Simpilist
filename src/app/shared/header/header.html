@@ -1,0 +1,21 @@
+<header class="header">
+  <div class="logo">
+    Simpilist
+  </div>
+
+
+  <nav class="nav">
+    @for (item of menu(); track $index) {
+    @if(item.isButton){
+    <button (click)="item.action?.()">
+      {{ item.label }}
+    </button>
+    }@else {
+    <a [routerLink]="item.link" (click)="item.action?.()">
+      {{ item.label }}
+    </a>
+    }
+    }
+
+  </nav>
+</header>
