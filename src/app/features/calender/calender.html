@@ -1,36 +1,50 @@
 <div class="calender">
-  <div class="date-selector">
-    <h3>Date: <input type="date" [value]="this.dateString()" (change)="onChange($event)"></h3>
+  <div class="month-selector">
+    <h6>Today: {{today().toISOString().split("T")[0]}}</h6>
+    <h3>Month: <input type="month" [value]="this.monthString()" (change)="onChange($event)"></h3>
   </div>
-  <table>
-    <thead>
-      <tr>
-        <td>
-          Mon
-        </td>
-        <td>
-          Tue
-        </td>
-        <td>
-          Wed
-        </td>
-        <td>
-          Thrus
-        </td>
-        <td>
-          Fri
-        </td>
-        <td>
-          Sat
-        </td>
-        <td>
-          Sun
-        </td>
-      </tr>
-    </thead>
-    <tbody>
+  <div class="date">
+    <table>
+      <thead>
+        <tr>
+          <td>
+            Sun
+          </td>
+          <td>
+            Mon
+          </td>
+          <td>
+            Tue
+          </td>
+          <td>
+            Wed
+          </td>
+          <td>
+            Thr
+          </td>
+          <td>
+            Fri
+          </td>
+          <td>
+            Sat
+          </td>
+        </tr>
+      </thead>
+      <tbody>
 
-    </tbody>
-  </table>
+        @for(week of getWeeks();track $index) {
+        <tr>
+          @for(day of week;track $index) {
+          <td class="{{ !day ? '' : 'clickable' }}">
+            <!--we will add some logic to highligh if this day is today -->
+            {{day}}
+          </td>
+          }
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
 
 </div>
