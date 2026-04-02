@@ -8,7 +8,6 @@ export type MenuItem = {
   isSubMenu?: boolean;
   subMenuItems?: MenuItem[];
   icon?:string;
-  imageUrl?:string;
 };
 
 export type MENU_TYPES = (typeof USER_TYPES)[keyof typeof USER_TYPES];
