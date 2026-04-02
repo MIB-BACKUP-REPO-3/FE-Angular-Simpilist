@@ -37,3 +37,10 @@
 .toast.info {
   background-color: #2196f3;
 }
+
+.timestamp {
+  color: lightblue;
+  font-size: xx-small;
+  width: 100%;
+  text-align: end;
+}

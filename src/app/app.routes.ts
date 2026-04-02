@@ -1,11 +1,15 @@
 import { Routes } from '@angular/router';
 import { Login } from './features/auth/login/login';
-import { Home } from './features/auth/home/home';
+import { Home } from './features/home/home';
 import { authGuard } from './core/guards/auth-guard';
 import { guestGuard } from './core/guards/guest-guard';
 import { Register } from './features/auth/register/register';
 import { Contact } from './features/contact/contact';
 import { About } from './features/about/about';
+import { Todo } from './features/todo/todo';
+import { Calender } from './features/calender/calender';
+import { Pomodoro } from './features/pomodoro/pomodoro';
+import { PerformanceAnalysis } from './features/performance-analysis/performance-analysis';
 export const routes: Routes = [
   {
     path: 'login',
@@ -17,7 +21,7 @@ export const routes: Routes = [
     component: Home,
     canActivate: [authGuard],
   },
-    {
+  {
     path: 'home',
     component: Home,
     canActivate: [authGuard],
@@ -27,12 +31,37 @@ export const routes: Routes = [
     component: Register,
     canActivate: [guestGuard],
   },
-    {
+  {
     path: 'contact',
-    component: Contact
+    component: Contact,
   },
-    {
+  {
     path: 'about',
-    component: About
-  }
+    component: About,
+  },
+  {
+    path: 'todo-list',
+    component: Todo,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'calender',
+    component: Calender,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'pomodoro',
+    component: Pomodoro,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'todo-list',
+    component: Todo,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'performance-analysis',
+    component: PerformanceAnalysis,
+    canActivate: [authGuard],
+  },
 ];

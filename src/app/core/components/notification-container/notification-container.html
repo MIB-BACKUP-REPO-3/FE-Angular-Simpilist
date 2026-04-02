@@ -1,6 +1,12 @@
 @for (notification of notifications; track notification.id) {
-  <div class="toast" [class]="notification.type">
-    <span>{{ notification.message }}</span>
-    <button (click)="removeMessage(notification.id)">x</button>
+<div class="toast" [class]="notification.type">
+  <div class="message">
   </div>
+  <span>{{ notification.message }}</span>
+  <hr>
+  <div class="timestamp">
+    <sub>{{ notification.timestamp }}</sub>
+  </div>
+  <button (click)="removeMessage(notification.id)">x</button>
+</div>
 }

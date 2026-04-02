@@ -4,7 +4,11 @@ export type MenuItem = {
   label: string;
   link?: string;
   action?: () => void;
-  isButton?:Boolean;
+  isButton?: boolean;
+  isSubMenu?: boolean;
+  subMenuItems?: MenuItem[];
+  icon?:string;
+  imageUrl?:string;
 };
 
 export type MENU_TYPES = (typeof USER_TYPES)[keyof typeof USER_TYPES];

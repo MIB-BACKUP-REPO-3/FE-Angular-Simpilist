@@ -1,3 +1,7 @@
+export const NOTIFICATION_CONFIG={
+  SUCCESSFUL_REGISTRATION:"You have successfully registered, please login using the information you registered with"
+}
+
 export const STORAGE_KEYS = {
   ACCESS_TOKEN: 'access_token',
   REFRESH_TOKEN: 'refresh_token',
@@ -13,8 +17,6 @@ export const USER_TYPES = {
 export const APPLICATION_CONFIGURATIONS = {
   TOAST_TIMEOUT: 3000,
 };
-
-
 
 export const NOTIFICATION_TYPES = {
  ERROR:"error",

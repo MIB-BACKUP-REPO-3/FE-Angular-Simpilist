@@ -1,1 +1,17 @@
-<p>contact works!</p>
+<div class="contact">
+  <h2>Contact</h2>
+  <p>Got feedback or found a bug? Send a message.</p>
+
+  <form (ngSubmit)="handleSubmit($event)">
+    <label>Name</label>
+    <input type="text" placeholder="Your name" />
+
+    <label>Email</label>
+    <input type="email" placeholder="Your email" />
+
+    <label>Message</label>
+    <textarea placeholder="Your message"></textarea>
+
+    <button type="submit" >Send</button>
+  </form>
+</div>

@@ -8,10 +8,17 @@
     @for (item of menu(); track $index) {
     @if(item.isButton){
     <button (click)="item.action?.()">
+      @if(item.icon){
+      <img src={{item.icon}} alt="">
+      }
       {{ item.label }}
     </button>
     }@else {
     <a [routerLink]="item.link" (click)="item.action?.()">
+      @if(item.icon){
+      <img src={{item.icon}} alt="">
+      }
+
       {{ item.label }}
     </a>
     }

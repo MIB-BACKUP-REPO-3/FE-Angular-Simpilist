@@ -12,3 +12,17 @@ export const createToastNotification = (
     type: type,
   };
 };
+
+
+export const createToastNotificationWithSystemDate = (
+  message: string,
+  type: notificationType,
+): ToastNotification => {
+  let date =new Date
+  return {
+    message: message,
+    id: crypto.randomUUID(),
+    timestamp: date.toDateString(),
+    type: type,
+  };
+};

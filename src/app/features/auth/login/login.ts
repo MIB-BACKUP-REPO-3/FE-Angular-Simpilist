@@ -1,15 +1,12 @@
-import { NOTIFICATION_TYPES } from './../../../core/constants/constants';
 import { Component } from '@angular/core';
 import { Auth } from '../services/auth';
 import { FormBuilder, ReactiveFormsModule, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { LoginRequest, LoginResponse, RegisterRequest } from '../types/auth.types';
+import { LoginResponse, RegisterRequest } from '../types/auth.types';
 import { AuthStorageService } from '../../../core/services/auth-storage.service';
 import { ErrorResponse } from '../../../shared/types/shared.types';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../../core/services/notification.service';
-import { createToastNotification } from '../../../core/utilities/Factory/factory';
-import { dateTimestampProvider } from 'rxjs/internal/scheduler/dateTimestampProvider';
 
 @Component({
   selector: 'app-login',
@@ -50,6 +47,10 @@ export class Login {
 
   login() {
     const data: RegisterRequest = this._form.value;
+    if (this._form.invalid) {
+      this.notificationService.showWarningNotification('Invalid Form Data');
+      return;
+    }
     this.auth.login(data).subscribe({
       next: (res: LoginResponse) => {
         this.authStorageService.setAuthentication(res);
@@ -57,7 +58,7 @@ export class Login {
       },
       error: (err) => {
         const error: ErrorResponse = err.error;
-        this.notificationService.showError(error);
+        this.notificationService.showErrorNotification(error);
       },
     });
   }

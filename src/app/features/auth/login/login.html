@@ -14,7 +14,7 @@
         formControlName="password" />
     </div>
     <div class="field">
-      <button type="submit">Login</button>
+      <button type="submit" [disabled]="form.invalid">Login</button>
     </div>
     <div class="field">
       <p>

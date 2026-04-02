@@ -3,9 +3,10 @@ import { MENU_TYPES } from '../model/menu.model';
 import { MenuItem } from '../model/menu.model';
 import { AuthStorageService } from '../services/auth-storage.service';
 
-const logout = (auth: AuthStorageService, router: Router): MenuItem => {
+const logoutMenuButton = (auth: AuthStorageService, router: Router): MenuItem => {
   return {
     label: 'Logout',
+    icon:"/images/logout.svg",
     action: () => {
       auth.logout();
       router.navigate(['/login']);
@@ -14,19 +15,59 @@ const logout = (auth: AuthStorageService, router: Router): MenuItem => {
   };
 };
 
-export const createMenuConfig = (
+const simpleMenuItem = (
+  label: string,
+  link: string,
+  icon: string = "",
+  isButton: boolean = false,
+): MenuItem => {
+  return {
+    label: label,
+    icon:icon,
+    link: link,
+    action: () => {},
+    isSubMenu: false,
+    isButton: isButton,
+  };
+};
+
+const subMenuItem = (label: string, menuItems: MenuItem[], isButton: boolean): MenuItem => {
+  return {
+    label: label,
+    isSubMenu: true,
+    subMenuItems: menuItems,
+    isButton: isButton,
+  };
+};
+
+export const createHeaderMenuConfig = (
   auth: AuthStorageService,
   router: Router,
 ): Record<MENU_TYPES, MenuItem[]> => ({
   guest: [
-    { label: 'Home', link: '/home' },
-    { label: 'About', link: '/about' },
-    { label: 'Contact', link: '/contact' },
-    { label: 'Login', link: '/login' },
-    { label: 'Register', link: '/register' },
+    simpleMenuItem('Home', '/home',"/images/home.svg"),
+    simpleMenuItem('About', '/about',"/images/about.svg"),
+    simpleMenuItem('Contact', '/contact',"/images/contact.svg"),
+    simpleMenuItem('Login', '/login',"/images/login.svg"),
+    simpleMenuItem('Register', '/register',"/images/register.svg"),
   ],
 
-  user: [{ label: 'Home', link: '/home' }, logout(auth, router)],
+  user: [
+    simpleMenuItem('Home', '/home',"/images/home.svg"),
+    simpleMenuItem('Todo List', '/todo-list',"/images/todo.svg"),
+    simpleMenuItem('Pomodoro', '/pomodoro',"/images/pomodoro.svg"),
+    simpleMenuItem('Performance Analysis', '/performance-analysis',"/images/analysis.svg"),
+    simpleMenuItem('Calender', '/calender',"/images/calender.svg"),
+    logoutMenuButton(auth, router),
+  ],
 
-  admin: [logout(auth, router)],
+  admin: [logoutMenuButton(auth, router)],
 });
+
+// const UserSubMenu = (): MenuItem => {
+//   return{
+//     // i am bbuilding this
+//     isSubMenu:true,
+//     label:
+//   }
+// };

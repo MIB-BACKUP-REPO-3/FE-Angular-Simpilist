@@ -29,6 +29,7 @@ input {
 button {
   align-self: center;
   margin: 1rem;
+  padding: 0.5rem;
 }
 
 button:hover {
@@ -40,11 +41,10 @@ h1 {
   font-size: 2rem;
 }
 
-.phone-code{
+.phone-code {
   width: 2rem;
 }
 
 .phone-code::after {
-  content: "-";
+  content: '-';
 }
-

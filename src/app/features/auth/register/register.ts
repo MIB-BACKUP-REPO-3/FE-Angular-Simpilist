@@ -1,9 +1,11 @@
+import { NotificationService } from './../../../core/services/notification.service';
 import { Component } from '@angular/core';
 import { RegisterRequest } from '../types/auth.types';
 import { Auth } from '../services/auth';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ErrorResponse } from '../../../shared/types/shared.types';
+import { NOTIFICATION_CONFIG } from '../../../core/constants/constants';
 
 @Component({
   selector: 'app-register',
@@ -26,6 +28,7 @@ export class Register {
     private auth: Auth,
     private formBuilder: FormBuilder,
     private router: Router,
+    private notificationService:NotificationService
   ) {
     this._form = this.formBuilder.group({
       firstName: ['', [Validators.required]],
@@ -58,12 +61,18 @@ export class Register {
 
   register() {
     const data: RegisterRequest = this._form.value;
+    if (this._form.invalid) {
+      this.notificationService.showWarningNotification('Invalid Form Data');
+      return;
+    }
     this.auth.register(data).subscribe({
       next: (res) => {
         this.router.navigate(['/login']);
+        this.notificationService.showInfoNotification(NOTIFICATION_CONFIG.SUCCESSFUL_REGISTRATION)
       },
       error: (err) => {
         const error: ErrorResponse = err.error;
+        this.notificationService.showErrorNotification(error)
       },
     });
   }
