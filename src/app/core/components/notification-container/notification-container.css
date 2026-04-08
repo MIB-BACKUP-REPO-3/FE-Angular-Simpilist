@@ -23,7 +23,6 @@
   border: none;
   color: white;
   font-size: 1.2rem;
-  cursor: pointer;
 }
 
 .toast.error {

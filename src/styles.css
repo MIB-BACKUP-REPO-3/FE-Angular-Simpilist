@@ -1,4 +1,28 @@
-.b{
+.b {
   /* this is for debugging */
   border: solid black;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+app-root {
+  display: block;
+  height: 100%;
+}
+
+button:hover {
+  cursor: pointer;
 }

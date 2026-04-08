@@ -1,7 +1,6 @@
+import { AuthStorageService } from './../../../core/services/auth-storage.service';
+import { MENU_TYPES, MenuItem } from './../../../core/model/menu.model';
 import { Router } from '@angular/router';
-import { MENU_TYPES } from '../model/menu.model';
-import { MenuItem } from '../model/menu.model';
-import { AuthStorageService } from '../services/auth-storage.service';
 
 const logoutMenuButton = (auth: AuthStorageService, router: Router): MenuItem => {
   return {
@@ -25,7 +24,6 @@ const simpleMenuItem = (
     label: label,
     icon:icon,
     link: link,
-    action: () => {},
     isSubMenu: false,
     isButton: isButton,
   };
@@ -64,10 +62,3 @@ export const createHeaderMenuConfig = (
   admin: [logoutMenuButton(auth, router)],
 });
 
-// const UserSubMenu = (): MenuItem => {
-//   return{
-//     // i am bbuilding this
-//     isSubMenu:true,
-//     label:
-//   }
-// };

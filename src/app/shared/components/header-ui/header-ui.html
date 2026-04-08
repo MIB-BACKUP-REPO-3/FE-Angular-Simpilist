@@ -2,27 +2,23 @@
   <div class="logo">
     Simpilist
   </div>
-
-
   <nav class="nav">
     @for (item of menu(); track $index) {
     @if(item.isButton){
-    <button (click)="item.action?.()">
+    <button (click)="itemClick.emit(item)">
       @if(item.icon){
       <img src={{item.icon}} alt="">
       }
       {{ item.label }}
     </button>
     }@else {
-    <a [routerLink]="item.link" (click)="item.action?.()">
+    <a (click)="itemClick.emit(item)">
       @if(item.icon){
       <img src={{item.icon}} alt="">
       }
-
       {{ item.label }}
     </a>
     }
     }
-
   </nav>
 </header>

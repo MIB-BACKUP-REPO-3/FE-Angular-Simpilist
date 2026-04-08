@@ -1,0 +1,22 @@
+
+h1 {
+  text-align: center;
+}
+
+table {
+  text-align: center;
+  width: 100%;
+  overflow-x: scroll;
+}
+
+button {
+  margin: 0.1rem;
+  border-radius: 0.5rem;
+}
+
+h1 > button {
+  font-size: 1rem;
+}
+
+
+

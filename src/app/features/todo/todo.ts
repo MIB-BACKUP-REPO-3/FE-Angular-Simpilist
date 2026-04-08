@@ -1,9 +1,15 @@
 import { Component } from '@angular/core';
+import { Category } from "./category/category";
+import { Group } from "./group/group";
 
 @Component({
   selector: 'app-todo',
-  imports: [],
+  imports: [Category, Group],
   templateUrl: './todo.html',
   styleUrl: './todo.css',
 })
-export class Todo {}
+export class Todo {
+
+
+
+}
