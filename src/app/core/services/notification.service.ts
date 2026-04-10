@@ -1,7 +1,7 @@
 import { ToastNotification } from './../model/toast.model';
 import { Injectable } from '@angular/core';
-import { ErrorResponse } from '../../shared/types/shared.types';
-import { createToastNotification, createToastNotificationWithSystemDate } from '../utilities/Factory/factory';
+import { ErrorResponse } from '../model/error-response.model';
+import { createToastNotification, createToastNotificationWithSystemDate } from '../utilities/Factory/ToastNotificationFactory';
 import { NOTIFICATION_TYPES } from '../constants/constants';
 import { Subject } from 'rxjs';
 

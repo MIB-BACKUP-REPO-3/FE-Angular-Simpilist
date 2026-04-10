@@ -1,3 +1,4 @@
+import { SortField } from './../model/sort-field.model';
 export const NOTIFICATION_CONFIG={
   SUCCESSFUL_REGISTRATION:"You have successfully registered, please login using the information you registered with"
 }
@@ -23,3 +24,22 @@ export const NOTIFICATION_TYPES = {
  WARNING:"warning",
  INFO:"info"
 } as const
+
+export const SORT_DIRECTIONS = {
+  ASC: 'ASC',
+  DESC: 'DESC',
+} as const;
+
+
+export const DEFAULT_SORT_FIELD:SortField={
+  field:"createdAt",
+  direction:"ASC"
+}
+
+export const PAGINATION_CONFIG={
+  DEFAULT_FIRST_PAGE:1,
+  DEFAULT_PAGE_SIZE:10,
+  DEFAULT_SORT_FIELD:DEFAULT_SORT_FIELD,
+  DEFAULT_SEARCH_QUERY:""
+}
+

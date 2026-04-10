@@ -1,6 +1,6 @@
 import { USER_TYPES } from '../constants/constants';
 
-export type MenuItem = {
+export interface MenuItem {
   label: string;
   link?: string;
   action?: () => void;

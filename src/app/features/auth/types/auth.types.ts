@@ -1,4 +1,4 @@
-import { ErrorResponse } from "../../../shared/types/shared.types";
+import { ErrorResponse } from "../../../core/model/error-response.model";
 
 export interface LoginRequest {
   email: string;
