@@ -2,6 +2,8 @@ import { HttpParams } from '@angular/common/http';
 import { PAGINATION_CONFIG } from '../constants/constants';
 import { PageRequest } from '../model/page-request.model';
 import { SearchablePageRequest } from '../model/searchable-page-request.model';
+import { ErrorResponse } from '../model/error-response.model';
+import { NotificationService } from '../services/notification.service';
 
 export const createPageRequest = (request?: Partial<PageRequest>): PageRequest => {
   return {
@@ -42,4 +44,10 @@ export const toHttpParams = (obj: any): HttpParams => {
   });
 
   return params;
+};
+
+export const logAndNotifyError = (err: any, notificationService: NotificationService) => {
+  const error: ErrorResponse = err.error;
+  console.error(error);
+  notificationService.showErrorNotification(error);
 };

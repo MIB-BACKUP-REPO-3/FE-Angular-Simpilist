@@ -1,5 +1,5 @@
 <h1>Category
-  <button>
+  <button (click)="showAddForm()">
     Add Category
   </button>
 </h1>
@@ -22,22 +22,44 @@
     </tr>
   </thead>
   <tbody>
-    @for(row of mockData(); track $index){
+    @for(row of categories(); track $index){
     <tr>
       <td>{{$index +1}}</td>
       <td>
-        {{row.categoryName}}
+        @if(editField()?.current?.id === row.id) {
+        <input [(ngModel)]="editField()!.current.categoryName" />
+        } @else {
+        {{ row.categoryName }}
+        }
       </td>
       <td>
-        {{row.priority}}
+        @if(editField()?.current?.id === row.id) {
+        <input type="number" [(ngModel)]="editField()!.current.priority" />
+        } @else {
+        {{ row.priority }}
+        }
       </td>
       <td>
-        <button>Edit</button>
-        <button>Delete</button>
+        @if(editField()?.original?.id === row.id) {
+        <button (click)="editCategory()">Save</button>
+        <button (click)="cancelEdit()">Cancel</button>
+        } @else {
+        <button (click)="saveInitialCategory(row)">Edit</button>
+        <button (click)="deleteCategory(row)">Delete</button>
+        }
       </td>
     </tr>
 
     }
   </tbody>
 </table>
+@if(showForm()){
+<form (submit)="saveCategory()">
+  <input type="text" name="categoryName" [(ngModel)]="newCategory.categoryName" placeholder="Enter Category Name" />
+  <input type="number" name="priority" [(ngModel)]="newCategory.priority" placeholder="Enter priority" />
+  <button>save</button>
+  <button (click)="hideAddForm($event)">cancel</button>
+</form>
+}
+
 <hr>

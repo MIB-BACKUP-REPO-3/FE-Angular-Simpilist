@@ -6,7 +6,7 @@ import { LoginRequest, LoginResponse } from '../types/auth.types';
 @Injectable({
   providedIn: 'root',
 })
-export class Auth {
+export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(loginRequest: LoginRequest) {

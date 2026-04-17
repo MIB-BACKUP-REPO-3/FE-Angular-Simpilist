@@ -9,6 +9,10 @@ table {
   overflow-x: scroll;
 }
 
+input{
+  width: 6rem;
+}
+
 button {
   margin: 0.1rem;
   border-radius: 0.5rem;
@@ -19,3 +23,9 @@ h1 > button {
 }
 
 
+
+td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -20,22 +20,28 @@
         Items
       </td>
       <td>
+      Category
+      </td>
+      <td>
         <!-- Actions -->
       </td>
     </tr>
   </thead>
   <tbody>
-    @for(row of mockData; track $index){
+    @for(group of groups(); track $index){
     <tr>
       <td>{{$index +1}}</td>
       <td>
-        {{row.groupName}}
+        {{group.groupName}}
       </td>
       <td>
-        {{row.priority}}
+        {{group.priority}}
       </td>
       <td>
         0
+      </td>
+      <td>
+        {{group.category.categoryName}}
       </td>
       <td>
         <button>Edit</button>

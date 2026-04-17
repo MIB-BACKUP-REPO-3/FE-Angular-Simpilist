@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
-import { Group } from '../../../models/todo/group.model';
-import { Category } from '../../../models/todo/category.model';
+import { NotificationService } from './../../../core/services/notification.service';
+import { GroupService } from './services/group-service';
+import { Group } from './../../../models/todo/group.model';
+import { Category } from './../../../models/todo/category.model';
+import { Component, input, OnInit, signal } from '@angular/core';
+import { createSearchablePageRequest, logAndNotifyError } from '../../../core/utilities/utilities';
 
 @Component({
   selector: 'app-group',
@@ -8,45 +11,27 @@ import { Category } from '../../../models/todo/category.model';
   templateUrl: './group.component.html',
   styleUrl: './group.component.css',
 })
-export class GroupComponent {
+export class GroupComponent implements OnInit {
+  constructor(
+    private groupService: GroupService,
+    private notificationService: NotificationService,
+  ) {}
 
-  groupCategory: Category = {
-    categoryName: 'testCategory',
-    id: 1,
-    priority: 1,
-  };
-  mockData: Group[] = [
-    {
-      groupName: 'test',
-      priority: 1,
-      id: 1,
-      category: this.groupCategory,
-    },
-    {
-      groupName: 'test',
-      priority: 1,
-      id: 2,
-      category: this.groupCategory,
-    },
-    {
-      groupName: 'test',
-      priority: 1,
-      id: 3,
-      category: this.groupCategory,
-    },
-    {
-      groupName: 'test',
-      priority: 1,
-      id: 4,
-      category: this.groupCategory,
-    },
-    {
-      groupName: 'test',
-      priority: 1,
-      id: 5,
-      category: this.groupCategory,
-    },
-  ];
+  ngOnInit(): void {
+    this.fetchGroups();
+  }
 
-  // todo fix the group
+  category = input<Category>();
+  groups = signal<Group[]>([]);
+
+  fetchGroups() {
+    this.groupService.getGroups(createSearchablePageRequest()).subscribe({
+      next: (response) => {
+        this.groups.set(response.content);
+      },
+      error: (err) => {
+        logAndNotifyError(err, this.notificationService);
+      },
+    });
+  }
 }

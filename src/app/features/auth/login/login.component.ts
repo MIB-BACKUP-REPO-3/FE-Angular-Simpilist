@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { Auth } from '../services/auth';
+import { AuthService } from '../services/auth.service';
 import { FormBuilder, ReactiveFormsModule, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { LoginResponse, RegisterRequest } from '../types/auth.types';
+import { LoginRequest, LoginResponse } from '../types/auth.types';
 import { AuthStorageService } from '../../../core/services/auth-storage.service';
 import { ErrorResponse } from '../../../core/model/error-response.model';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../../core/services/notification.service';
+import { logAndNotifyError } from '../../../core/utilities/utilities';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,7 @@ export class LoginComponent {
   }
 
   constructor(
-    private auth: Auth,
+    private authService: AuthService,
     private formBuilder: FormBuilder,
     private router: Router,
     private authStorageService: AuthStorageService,
@@ -46,19 +47,18 @@ export class LoginComponent {
   }
 
   login() {
-    const data: RegisterRequest = this._form.value;
+    const data: LoginRequest = this._form.value;
     if (this._form.invalid) {
       this.notificationService.showWarningNotification('Invalid Form Data');
       return;
     }
-    this.auth.login(data).subscribe({
+    this.authService.login(data).subscribe({
       next: (res: LoginResponse) => {
         this.authStorageService.setAuthentication(res);
         this.router.navigate(['/']);
       },
       error: (err) => {
-        const error: ErrorResponse = err.error;
-        this.notificationService.showErrorNotification(error);
+        logAndNotifyError(err,this.notificationService)
       },
     });
   }

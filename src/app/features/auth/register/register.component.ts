@@ -1,11 +1,12 @@
 import { NotificationService } from '../../../core/services/notification.service';
 import { Component } from '@angular/core';
 import { RegisterRequest } from '../types/auth.types';
-import { Auth } from '../services/auth';
+import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ErrorResponse } from '../../../core/model/error-response.model';
 import { NOTIFICATION_CONFIG } from '../../../core/constants/constants';
+import { logAndNotifyError } from '../../../core/utilities/utilities';
 
 @Component({
   selector: 'app-register',
@@ -25,7 +26,7 @@ export class RegisterComponent {
   }
 
   constructor(
-    private auth: Auth,
+    private auth: AuthService,
     private formBuilder: FormBuilder,
     private router: Router,
     private notificationService:NotificationService
@@ -71,8 +72,7 @@ export class RegisterComponent {
         this.notificationService.showInfoNotification(NOTIFICATION_CONFIG.SUCCESSFUL_REGISTRATION)
       },
       error: (err) => {
-        const error: ErrorResponse = err.error;
-        this.notificationService.showErrorNotification(error)
+        logAndNotifyError(err,this.notificationService)
       },
     });
   }
